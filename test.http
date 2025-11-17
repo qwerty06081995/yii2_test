@@ -1,0 +1,35 @@
+### Регистрация пользователя
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "username": "nurzhanduisenbaev",
+    "email": "nurzhan@gmail.com",
+    "password": "iitu1995"
+}
+
+### В ответ получите access_token
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "nurzhanduisenbaev",
+  "password": "iitu1995"
+}
+> {% client.global.set("auth_token", response.body.access_token); %}
+
+
+### Получение список книг
+GET http://localhost:8080/books
+Content-Type: application/json
+
+
+### Создание книги
+POST http://localhost:8080/books
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "Новая книга 2",
+  "author": "Иван Иванов 2"
+}
