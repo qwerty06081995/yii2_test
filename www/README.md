@@ -1,10 +1,10 @@
 Для запуска проекта выполните команду
 ```
- docker-compose up -d 
+ php yii serve
 ```
 Не забудьте выполнить команду минраций
 ```
- docker exec -it yii2_php php yii migrate
+ php yii migrate
 ```
 В корне папке есть файл
 ```
