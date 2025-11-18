@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function actionView($id) {
         $user = User::findOne($id);
-        if (!$user) throw new NotFoundHttpException('User not found');
+        if (!$user) throw new NotFoundHttpException('Пользователь не найден');
         return $user;
     }
 }

@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function actionLogin() {
         $body = Yii::$app->request->bodyParams;
         if (empty($body['username']) || empty($body['password'])) {
-            throw new BadRequestHttpException('Username and password required');
+            throw new BadRequestHttpException('Объязательны логин и пароль');
         }
 
 

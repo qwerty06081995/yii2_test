@@ -18,18 +18,44 @@ Content-Type: application/json
 }
 > {% client.global.set("auth_token", response.body.access_token); %}
 
+### Просмотр профиля (только для авторизованных)
+GET http://localhost:8080/users/2
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
 
-### Получение список книг
-GET http://localhost:8080/books
+
+### Получение список книг с пагинацией(per-page)
+GET http://localhost:8080/books?per-page=7
 Content-Type: application/json
 
 
-### Создание книги
+### добавить книгу (только авторизованный пользователь).
 POST http://localhost:8080/books
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-  "title": "Новая книга 2",
-  "author": "Иван Иванов 2"
+  "title": "Новая книга 8",
+  "author": "Иван Иванов 8"
 }
+
+### Получить информацию о книге
+GET http://localhost:8080/books/5
+Content-Type: application/json
+
+### Обновить данные книги (только авторизованный).
+POST http://localhost:8080/books/6
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+X-HTTP-Method-Override: PUT
+
+{
+  "title": "Обновленная книга 9",
+  "author": "Новый автор 9",
+  "description": "hello moto GGG"
+}
+
+###  удалить книгу (только авторизованный).
+DELETE http://localhost:8080/books/4
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
