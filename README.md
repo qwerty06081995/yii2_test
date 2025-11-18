@@ -1,14 +1,16 @@
 Для запуска проекта выполните команду
 ```
- docker-compose up -d 
+    docker-compose build php
+    docker-compose up -d
+    docker-compose run --rm php composer install 
 ```
 Не забудьте выполнить команду минраций
 ```
  docker exec -it yii2_php php yii migrate
 ```
-В корне папке есть файл
+В корне папке есть файл 
 ```
-test.http
+ЗАПРОСЫ_ДЛЯ_ТЕСТА.http
 ```
 После того как запустите проект, выполните их по очереди. 
 Там пример для регистрация пользователя, получение токена, добавление книги в базу и список книг  
@@ -38,18 +40,17 @@ curl -X GET http://localhost:8080/users/2 \
     -H "Content-Type: application/json"
 ```
 
-4) Получение список книг с пагинацией(per-page)
-```
-curl -X GET http://localhost:8080/books?per-page=3 \
-    -H "Content-Type: application/json"
-```
-
-5) добавить книгу (только авторизованный пользователь).
+4) добавить книгу (только авторизованный пользователь).
 ```
 curl -X POST http://localhost:8080/books \
     -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlhdCI6MTc2MzQzNTg3NSwiZXhwIjoxNzYzNTIyMjc1fQ.uv9floZehguBuXZKgq0ZLtV3b-xYzWK9zgEqlzRJye8" \
     -H "Content-Type: application/json" \
     -d '{"title": "New book curl", "author": "CURL Curlov"}'
+```
+5) Получение список книг с пагинацией(per-page)
+```
+curl -X GET http://localhost:8080/books?per-page=3 \
+    -H "Content-Type: application/json"
 ```
 
 6) Получить информацию о книге
